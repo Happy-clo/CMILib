@@ -28,4 +28,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: CMILib
-          path: target/*.jar
+          path: /home/runner/work/CMILib/CMILib/D:/MC/Server 1.20/plugins/*.jar
