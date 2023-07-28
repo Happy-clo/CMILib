@@ -1,62 +1,60 @@
 # CMILib
 
-## Introduction
+## 介绍
 
-This plugin helper, or **library**, is a handy tool that allows us to easily manage common phrases, hex colours and more. Instead of each plugin having to write its own code for these features, this library allows them to share this functionality, as well as providing an API for other developers to extend their own plugin features. 
+这是一个插件帮助工具，或者叫做**库**，它是一个方便的工具，可以让我们轻松管理常用短语、十六进制颜色等。通过使用这个库，其他插件不需要编写自己的代码来实现这些功能，而是可以共享这些功能，并为其他开发者提供API来扩展他们自己的插件功能。
 
-This reduces the overall size of other plugins, and makes updating and maintaining plugins much easier and more consistent.
+这样一来，其他插件的整体大小会减小，更新和维护插件也会更加简单和一致。
 
-**NOTE:** This library is required by ALL Zrips' plugins.
+**注意：**所有Zrips的插件都需要使用这个库。
 
-## Library Releases and Updates
+## 库的发布和更新
 
-It's heavily recommended to always keep this library up to date. You can download the latest builds from:
+强烈建议始终保持这个库是最新的版本。你可以从以下网站下载最新的构建版本：
 
-- [Developer's Official Website](https://www.zrips.net/cmilib/)
-- [Spigot Releases](https://www.spigotmc.org/resources/87610/)
+- [开发者的官方网站](https://www.zrips.net/cmilib/)
+- [Spigot发布页面](https://www.spigotmc.org/resources/87610/)
 
-## Installation Instructions
+## 安装指南
 
-**As with all plugin changes, make sure to `/stop` your server and make a full backup first.**
+**与所有插件更改一样，请确保在此之前先停止服务器并进行完整备份。**
 
-Download the latest version of the library from a release website mentioned in the [Library Releases Section](#library-releases-and-updates), and place it in your server's `plugins/` directory.
+从[库的发布和更新](#库的发布和更新)部分提到的发布网站下载最新版本的库，然后将其放置在服务器的`plugins/`目录下。
 
-To avoid conflicts, it is recommended to load this library without the plugins that depend on it first, this will ensure that any issues that arise aren't related to the library itself but rather with the dependent plugin, you should then report it to its developer so they update it to match the library changes.
+为了避免冲突，建议首先在没有依赖于此库的插件的情况下加载此库，这将确保任何问题与库本身无关，而是与依赖的插件有关，然后你应该向插件的开发者报告问题，以便他们更新插件以适应库的更改。
 
-Your Server should start with no issues. After the first startup, a new folder called `CMILib` will be created in your server's `plugins/` folder. This folder contains the library's configuration files. You can edit these files to your liking, but it's not required.
-If you're working on translations, please make sure to send a pull request to this repository.
+你的服务器应该可以无问题地启动。在第一次启动后，服务器的`plugins/`目录下会创建一个名为`CMILib`的新文件夹。这个文件夹包含了库的配置文件。你可以根据需要编辑这些文件，但这不是必需的。如果你在进行翻译，请确保向该仓库发送拉取请求。
 
-At this stage, you should run another `/stop` to add the plugins that depend on this library and proceed with their setup as required.
+在这个阶段，你应该再次运行`/stop`命令，添加依赖于这个库的插件，并按需进行设置。
 
-## Support
+## 支持
 
-If you have encountered an issue with this Library, please check the [Contributing Section](#contributing) below for information on how to report it.
+如果你在使用这个库时遇到了问题，请查看下面的[贡献部分](#contributing)，了解如何报告问题的信息。
 
-Before asking questions, please make sure to read our [Frequently Asked Questions](https://www.zrips.net/cmilib/faq/).
+在询问问题之前，请确保阅读我们的[常见问题解答](https://www.zrips.net/cmilib/faq/)。
 
-You can also request support and discuss issues with Community Members on the [Zrips Community Discord](https://discord.gg/dDMamN4).
+你也可以在[Zrips社区的Discord](https://discord.gg/dDMamN4)上请求支持并与社区成员讨论问题。
 
-## Contributing
+## 贡献
 
-You're free to clone this repository and make a pull request to offer bug fixes and/or suggestions.
+你可以自由地克隆这个仓库并提交拉取请求来提供bug修复和/或建议。
 
-You can also report bugs and/or make suggestions in the form of a [New Issue](https://github.com/Zrips/CMILib/issues/new), but **please** check if what you're submitting isn't a duplicate within the [Issues Tab](https://github.com/Zrips/CMILib/issues) or hasn't been already addressed in a [Pull Request](https://github.com/Zrips/CMILib/pulls).
+你也可以以[新问题](https://github.com/Zrips/CMILib/issues/new)的形式报告bug和/或提出建议，但**请确保**在提交之前检查你提交的内容在[问题选项卡](https://github.com/Zrips/CMILib/issues)中是否是重复的或者是否已经在[拉取请求](https://github.com/Zrips/CMILib/pulls)中处理过。
 
-## Plugins That Require This Library
+## 需要使用这个库的插件
 
-Have you developed a plugin that uses this library? Let us know and we'll add it to the list!
+你开发了一个使用这个库的插件吗？告诉我们，我们会将它添加到列表中！
 
-Note: Clicking on a link will open it on this page due a Markdown limitation. To open it in a new tab, right click and select "Open in new tab".
+注意：由于Markdown的限制，点击链接会在本页中打开它。若要在新标签页中打开它，请右键点击并选择“Open in new tab”。
 
-|                                                   Plugin Name (Spigot Link)                                                    | From Version | Up To Version |                          Plugin Author                           |
-|:------------------------------------------------------------------------------------------------------------------------------:|:------------:|:-------------:|:----------------------------------------------------------------:|
-|                               [BottledExp](https://www.spigotmc.org/resources/bottledexp.2815/)                                |     3.x      |    latest     | [Zrips](https://www.spigotmc.org/resources/authors/zrips.24572/) |
-| [CMI](https://www.spigotmc.org/resources/cmi-298-commands-insane-kits-portals-essentials-economy-mysql-sqlite-much-more.3742/) |     9.X      |    latest     | [Zrips](https://www.spigotmc.org/resources/authors/zrips.24572/) |
-|                               [JobsReborn](https://www.spigotmc.org/resources/jobs-reborn.4216/)                               |     5.X      |    latest     | [Zrips](https://www.spigotmc.org/resources/authors/zrips.24572/) |
-|     [MobFarmManager](https://www.spigotmc.org/resources/mob-farm-manager-supports-1-7-10-up-to-1-19-hopper-support.15127/)     |     2.X      |    latest     | [Zrips](https://www.spigotmc.org/resources/authors/zrips.24572/) |
-|                                  [Recount](https://www.spigotmc.org/resources/recount.3962/)                                   |    3.5.X     |    latest     | [Zrips](https://www.spigotmc.org/resources/authors/zrips.24572/) |
-|                       [Residence](https://www.spigotmc.org/resources/residence-1-7-10-up-to-1-19.11480/)                       |     5.X      |    latest     | [Zrips](https://www.spigotmc.org/resources/authors/zrips.24572/) |
-|                     [SelectionVisualizer](https://www.spigotmc.org/resources/selection-visualizer.22631/)                      |   3.0.4.X    |    latest     | [Zrips](https://www.spigotmc.org/resources/authors/zrips.24572/) |
-|           [TradeMe](https://www.spigotmc.org/resources/trademe-with-api-to-create-custom-trades-1-7-10-1-19-x.7544/)           |    6.1.X     |    latest     | [Zrips](https://www.spigotmc.org/resources/authors/zrips.24572/) |
-|                                    [TryMe](https://www.spigotmc.org/resources/tryme.3330/)                                     |     7.X      |    latest     | [Zrips](https://www.spigotmc.org/resources/authors/zrips.24572/) |
-
+| 插件名称 (Spigot链接)                                           | 版本范围 | 最新版本 | 插件作者                             |
+|:------------------------------------------------------------:|:-------:|:-------:|:----------------------------------:|
+| [BottledExp](https://www.spigotmc.org/resources/bottledexp.2815/)                                 |   3.x   |  latest | [Zrips](https://www.spigotmc.org/resources/authors/zrips.24572/) |
+| [CMI](https://www.spigotmc.org/resources/cmi-298-commands-insane-kits-portals-essentials-economy-mysql-sqlite-much-more.3742/) |   9.X   |  latest | [Zrips](https://www.spigotmc.org/resources/authors/zrips.24572/) |
+| [JobsReborn](https://www.spigotmc.org/resources/jobs-reborn.4216/)                                |   5.X   |  latest | [Zrips](https://www.spigotmc.org/resources/authors/zrips.24572/) |
+| [MobFarmManager](https://www.spigotmc.org/resources/mob-farm-manager-supports-1-7-10-up-to-1-19-hopper-support.15127/)     |   2.X   |  latest | [Zrips](https://www.spigotmc.org/resources/authors/zrips.24572/) |
+| [Recount](https://www.spigotmc.org/resources/recount.3962/)                                     |  3.5.X  |  latest | [Zrips](https://www.spigotmc.org/resources/authors/zrips.24572/) |
+| [Residence](https://www.spigotmc.org/resources/residence-1-7-10-up-to-1-19.11480/)                   |   5.X   |  latest | [Zrips](https://www.spigotmc.org/resources/authors/zrips.24572/) |
+| [SelectionVisualizer](https://www.spigotmc.org/resources/selection-visualizer.22631/)               | 3.0.4.X |  latest | [Zrips](https://www.spigotmc.org/resources/authors/zrips.24572/) |
+| [TradeMe](https://www.spigotmc.org/resources/trademe-with-api-to-create-custom-trades-1-7-10-1-19-x.7544/)  |   6.1.X  |  latest | [Zrips](https://www.spigotmc.org/resources/authors/zrips.24572/) |
+| [TryMe](https://www.spigotmc.org/resources/tryme.3330/)                                      |   7.X   |  latest | [Zrips](https://www.spigotmc.org/resources/authors/zrips.24572/) |
