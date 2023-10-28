@@ -23,6 +23,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.RecipeChoice;
+import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ArmorMeta;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -390,6 +393,10 @@ public class CMIItemStack {
             }
 
             setEnt();
+
+            // Should not be null at this point if everything went how it should have, but just in case
+            if (this.item == null)
+                return null;
 
             if (this.getCMIType().isPotion() || item.getType().name().contains("SPLASH_POTION") || item.getType().name().contains("TIPPED_ARROW")) {
                 PotionMeta potion = (PotionMeta) item.getItemMeta();
@@ -767,11 +774,35 @@ public class CMIItemStack {
             if (rec == null)
                 continue;
             for (ItemStack one : CMIRecipe.getIngredientsList(rec)) {
-                if (one.isSimilar(i)) {
+
+                if (one.getType() != i.getType()) {
+                    continue;
+                }
+
+                if (one.getDurability() == -1 || one.getDurability() == Short.MAX_VALUE || one.getDurability() == i.getDurability()) {
                     recipes.add(rec);
                     break;
                 }
             }
+
+            if (rec instanceof ShapelessRecipe) {
+                ShapelessRecipe srec = (ShapelessRecipe) rec;
+                for (RecipeChoice one : srec.getChoiceList()) {
+                    if (one != null && one.test(i)) {
+                        recipes.add(rec);
+                        break;
+                    }
+                }
+            } else if (rec instanceof ShapedRecipe) {
+                ShapedRecipe srec = (ShapedRecipe) rec;
+                for (RecipeChoice one : srec.getChoiceMap().values()) {
+                    if (one != null && one.test(i)) {
+                        recipes.add(rec);
+                        break;
+                    }
+                }
+            }
+
         }
 
         return recipes;
@@ -906,6 +937,7 @@ public class CMIItemStack {
     static Pattern pmodel = Pattern.compile("^(?i)(custommodeldata|custommodel|cm|cmd)\\" + prefix);
     static Pattern pspecial = Pattern.compile("^(?i)(special|s)\\" + prefix);
     static Pattern ptrim = Pattern.compile("^(?i)(trim|t)\\" + prefix);
+    static Pattern psherds = Pattern.compile("^(?i)(sherds|sh)\\" + prefix);
 
     public static CMIItemStack deserialize(String input) {
         return deserialize(null, input);
@@ -1120,6 +1152,34 @@ public class CMIItemStack {
                         try {
                             int data = Integer.parseInt(f);
                             cim.setNbt("CustomModelData", data);
+                        } catch (Throwable e) {
+                            e.printStackTrace();
+                        }
+
+                        continue;
+                    }
+                }
+                if (Version.isCurrentEqualOrHigher(Version.v1_20_R1)) {
+                    Matcher mMatch = psherds.matcher(one);
+                    if (mMatch.find()) {
+                        String f = one.substring(mMatch.group().length());
+
+                        try {
+                            if (cim.getCMIType().equals(CMIMaterial.DECORATED_POT)) {
+                                List<String> sherds = new ArrayList<String>();
+                                for (String oneSherd : f.split(",")) {
+                                    CMIMaterial sherd = CMIMaterial.get(oneSherd);
+                                    if (sherd.toString().endsWith("_SHERD")) {
+                                        sherds.add("minecraft:" + sherd.toString().toLowerCase());
+                                    }
+                                }
+
+                                if (sherds.size() == 4) {
+
+                                    // TO-DO Finilize sherd deserialization
+
+                                }
+                            }
                         } catch (Throwable e) {
                             e.printStackTrace();
                         }

@@ -20,6 +20,7 @@ import net.Zrips.CMILib.CMILib;
 import net.Zrips.CMILib.Logs.CMIDebug;
 import net.Zrips.CMILib.NBT.CMINBT;
 import net.Zrips.CMILib.Permissions.CMILPerm;
+import net.Zrips.CMILib.Version.Version;
 import net.Zrips.CMILib.Version.Schedulers.CMIScheduler;
 import net.Zrips.CMILib.commands.CMICommand;
 
@@ -466,15 +467,26 @@ public class GUIManager {
 
     }
 
+    private static boolean validInventory(CMIGui gui) {
+
+        Player player = gui.getPlayer();
+
+        if (player.getOpenInventory() == null ||
+            player.getOpenInventory().getTopInventory() == null ||
+            !player.getOpenInventory().getTopInventory().getType().equals(gui.getInv().getType()) ||
+            player.getOpenInventory().getTopInventory().getSize() != gui.getInv().getSize() ||
+            Version.isCurrentEqualOrHigher(Version.v1_9_R1) && player.getOpenInventory().getTopInventory().getLocation() != null) {
+            return false;
+        }
+
+        return true;
+    }
+
     public void updateContent(CMIGui gui) {
 
         Player player = gui.getPlayer();
-        if (player.getOpenInventory() == null || player.getOpenInventory().getTopInventory() == null) {
-            player.closeInventory();
-            map.remove(player.getUniqueId());
-        }
 
-        if (!player.getOpenInventory().getTopInventory().getType().equals(gui.getInv().getType()) || player.getOpenInventory().getTopInventory().getSize() != gui.getInv().getSize()) {
+        if (!validInventory(gui)) {
             player.closeInventory();
             map.remove(player.getUniqueId());
             return;
@@ -500,8 +512,10 @@ public class GUIManager {
     public void softUpdateContent(CMIGui gui) {
 
         Player player = gui.getPlayer();
-        if (player.getOpenInventory() == null || player.getOpenInventory().getTopInventory() == null) {
+
+        if (!validInventory(gui)) {
             player.closeInventory();
+            return;
         }
 
 //	plugin.getNMS().updateInventoryTitle(player, gui.getTitle());
