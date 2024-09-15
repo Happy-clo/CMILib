@@ -59,7 +59,7 @@
 | [TradeMe](https://www.spigotmc.org/resources/trademe-with-api-to-create-custom-trades-1-7-10-1-19-x.7544/)  |   6.1.X  |  latest | [Zrips](https://www.spigotmc.org/resources/authors/zrips.24572/) |
 | [TryMe](https://www.spigotmc.org/resources/tryme.3330/)                                      |   7.X   |  latest | [Zrips](https://www.spigotmc.org/resources/authors/zrips.24572/) |
 > [!CAUTION]  
-> This branch is only used for personal development to provide builds or help. Please do not use the build attachments directly. The author is not responsible for any problems with the source plugin.
+> This branch is only for personal development, study and research. Please do not use any attachments directly. The author is not responsible for any problems with the source attachments.
 # Statement
 
 > [!CAUTION]  
